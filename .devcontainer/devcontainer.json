@@ -42,6 +42,14 @@
 			}
 		},
 		"vscode": {
+			// Load the FRC Mentor plugin into Copilot Chat from the copy the install script clones.
+			// Set as a container (machine) setting, so it isn't in a repo file students edit.
+			"settings": {
+				"chat.plugins.enabled": true,
+				"chat.pluginLocations": {
+					"/home/vscode/frc-mentor/plugins/frc-mentor": true
+				}
+			},
 			"extensions": [
 				"GitHub.copilot-chat"
 			]
