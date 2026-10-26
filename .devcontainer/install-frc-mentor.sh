@@ -30,6 +30,12 @@ copilot plugin marketplace add "$DEST" || true
 copilot plugin install frc-mentor@frc-mentor || true
 copilot plugin list || true
 
+# Ask for one window reload so Copilot Chat loads the plugin. VS Code started
+# before the clone finished, so it hasn't seen the folder yet. post-attach.sh
+# turns this into the reload signal once all setup is done.
+mkdir -p ~/.cache
+touch ~/.cache/devcontainer-reload-pending
+
 echo
 echo "FRC Mentor installed. Pick the 'frc-mentor:mentor' agent in Copilot Chat,"
 echo "or run: copilot --agent frc-mentor:mentor"

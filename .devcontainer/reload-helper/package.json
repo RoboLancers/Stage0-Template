@@ -1,0 +1,17 @@
+{
+  "name": "devcontainer-reload-helper",
+  "displayName": "Dev container reload helper",
+  "description": "Reloads the window once after the dev container's setup scripts finish, so newly installed plugins load.",
+  "publisher": "robolancers",
+  "version": "1.0.0",
+  "engines": { "vscode": "^1.80.0" },
+  "extensionKind": ["workspace"],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "Only waits for setup to finish; it reloads after the folder is trusted."
+    }
+  },
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js"
+}

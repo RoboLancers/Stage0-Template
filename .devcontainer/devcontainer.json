@@ -2,8 +2,8 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
 	"name": "Java",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/java:3-25-trixie",
+	// The Java image plus the reload helper (see Dockerfile).
+	"build": { "dockerfile": "Dockerfile" },
 
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
@@ -29,6 +29,9 @@
 
 	// Installs the Copilot CLI and the FRC Mentor plugin (copilot-port branch).
 	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.copilot && bash .devcontainer/install-frc-mentor.sh",
+
+	// Reloads the window once setup is done, so Copilot Chat loads the newly cloned plugin.
+	"postAttachCommand": "bash .devcontainer/post-attach.sh",
 
 	"customizations": {
 		// In Codespaces, ask for read access to the private frc-mentor repo so the script can clone it.
