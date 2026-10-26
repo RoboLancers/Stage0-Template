@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "if command -v node >/dev/null 2>&1; then node .github/frc-mentor/edit-guard.mjs; elif command -v pwsh >/dev/null 2>&1; then pwsh -NoProfile -NonInteractive -File .github/frc-mentor/edit-guard.ps1; else echo 'FRC Mentor needs Node.js or PowerShell to check tool calls, so this one was blocked.' >&2; exit 2; fi",
+        "powershell": "Invoke-Expression (Get-Content -Raw -LiteralPath '.github/frc-mentor/edit-guard.ps1')",
+        "timeoutSec": 10
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "cat .github/frc-mentor/hard-rule.json",
+        "powershell": "Get-Content -Raw -LiteralPath '.github/frc-mentor/hard-rule.json'",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}
