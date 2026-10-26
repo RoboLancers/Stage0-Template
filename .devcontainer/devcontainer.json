@@ -51,7 +51,10 @@
 				"chat.plugins.enabled": true,
 				"chat.pluginLocations": {
 					"/home/vscode/frc-mentor/plugins/frc-mentor": true
-				}
+				},
+				// Start every new chat in the mentor agent. VS Code can't hide the built-in
+				// agents, so students can still switch away in the dropdown.
+				"chat.newSession.defaultMode": "frc-mentor:mentor"
 			},
 			"extensions": [
 				"GitHub.copilot-chat"
