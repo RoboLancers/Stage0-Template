@@ -10,17 +10,46 @@
 			"version": "none",
 			"installMaven": "false",
 			"installGradle": "true"
+		},
+		// The FRC Mentor plugin's edit guard and notes server run on Node.
+		// Without Node, Copilot blocks every tool call while the plugin is on.
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts"
+		}
+	},
+
+	// Keep the Copilot CLI and its plugins across rebuilds.
+	"mounts": [
+		"source=stage0-copilot,target=/home/vscode/.copilot,type=volume"
+	],
+
+	"containerEnv": {
+		"COPILOT_AUTO_UPDATE": "false"
+	},
+
+	// Installs the Copilot CLI and the FRC Mentor plugin (copilot-port branch).
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.copilot && bash .devcontainer/install-frc-mentor.sh",
+
+	"customizations": {
+		// In Codespaces, ask for read access to the private frc-mentor repo so the script can clone it.
+		"codespaces": {
+			"repositories": {
+				"RoboLancers/frc-mentor": {
+					"permissions": {
+						"contents": "read"
+					}
+				}
+			}
+		},
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot-chat"
+			]
 		}
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
